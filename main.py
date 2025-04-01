@@ -5,6 +5,12 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Conve
 from telegram.ext import CommandHandler
 import random
 
+import logging
+from config import Config, load_config
+
+config: Config = load_config()
+BOT_TOKEN: str = config.tg_bot.token
+
 # Включаем логирование
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -76,7 +82,7 @@ def cancel(update: Update, context: CallbackContext) -> int:
 
 # Основная функция для настройки бота
 def main() -> None:
-    updater = Updater("YOUR_BOT_TOKEN")
+    updater = Updater("BOT_TOKEN")
 
     dispatcher = updater.dispatcher
 
